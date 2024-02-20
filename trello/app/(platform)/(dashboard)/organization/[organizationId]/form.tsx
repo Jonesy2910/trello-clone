@@ -1,9 +1,11 @@
 "use client";
 
 import {create , State} from "@/actions/create-board";
-import {Button} from "@/components/ui/button";
+
 
 import {useFormState} from "react-dom"
+import {FormInput} from "@/app/(platform)/(dashboard)/organization/[organizationId]/form-input";
+import {FormButton} from "@/app/(platform)/(dashboard)/organization/[organizationId]/form-button";
 
 export const Form = () => {
     const initialState : State = { message: null, errors: {} }
@@ -11,19 +13,9 @@ export const Form = () => {
     return (
         <form action={dispatch}>
             <div className="flex flex-col">
-                {state?.errors?.title ? (
-                    <div>
-                        {state.errors.title.map((error: string) => (
-                            <p key ={error} className={"text-rose-500"}>
-                                {error}
-                            </p>
-                        ))}
-                    </div>
-                ) : null}
+                <FormInput errors={state?.errors}/>
             </div>
-            <Button type={"submit"}>
-                Submit
-            </Button>
+            <FormButton />
         </form>
     )
 }
