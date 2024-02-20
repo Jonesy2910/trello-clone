@@ -18,7 +18,7 @@ export const Board = ({
             <p>
                 Board title: {title}
             </p>
-            <FormDelete />
+            <FormDelete/>
         </form>
     )
 }
