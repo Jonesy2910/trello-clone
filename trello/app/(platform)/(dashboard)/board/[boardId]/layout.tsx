@@ -1,8 +1,7 @@
 import {auth} from "@clerk/nextjs";
 import {db} from "@/lib/db";
 import {notFound, redirect} from "next/navigation";
-import {startCase} from "lodash";
-import {OrgControl} from "@/app/(platform)/(dashboard)/organization/[organizationId]/_components/org-control";
+import {BoardNavbar} from "@/app/(platform)/(dashboard)/board/[boardId]/_components/board-navbar";
 
 export async function generateMetadata({
     params
@@ -59,10 +58,12 @@ const BoardIdLayout = async ({
             className={"relative h-full bg-no-repeat bg-cover bg-center"}
             style={{backgroundImage: `url(${board.imageFullUrl})`}}
         >
-            <OrgControl />
-            <main className={"relative pt-28 h-full"}>
-                {children}
-            </main>
+            <BoardNavbar data={board}/>
+            <div className={"absolute inset-0 bg-black/10"}>
+                <main className={"relative pt-28 h-full"}>
+                    {children}
+                </main>
+            </div>
         </div>
     )
 }
