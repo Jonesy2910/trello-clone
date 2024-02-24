@@ -103,7 +103,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(({
                 variant={"ghost"}
             >
                 <Plus className={"h-4 w-4 mr-2"}/>
-                Add Button
+                Add Card
             </Button>
         </div>
     )
