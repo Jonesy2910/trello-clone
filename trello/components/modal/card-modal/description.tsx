@@ -53,6 +53,11 @@ export const Description = ({
             queryClient.invalidateQueries({
                 queryKey: ["card", data.id]
             })
+
+            queryClient.invalidateQueries({
+                queryKey: ["card-logs", data.id]
+            })
+
             toast.success(`Card "${data.title}" updated`)
         },
         onError: (error) => {
