@@ -8,6 +8,7 @@ import Link from "next/link"
 import {Skeleton} from "@/components/ui/skeleton";
 import {MAX_FREE_BOARDS} from "@/constants/boards";
 import {getAvailableCount} from "@/lib/org-limit";
+import {checkSubscription} from "@/lib/subscription";
 
 export const BoardList = async () => {
     const {orgId} = auth();
@@ -26,6 +27,7 @@ export const BoardList = async () => {
     });
 
     const availableCount = await getAvailableCount();
+    const isPro = await checkSubscription();
 
     return (
         <div className={"space-y-4"}>
@@ -54,7 +56,7 @@ export const BoardList = async () => {
                     >
                         <p className={"text-sm"}>Create New Board</p>
                         <span className={"text-xs"}>
-                            {`${MAX_FREE_BOARDS - availableCount} boards remaining`}
+                            {isPro? "Unlimited BOARDS!" : `${MAX_FREE_BOARDS - availableCount} boards remaining`}
                         </span>
                         <Hint
                             description={"Free workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace"}
